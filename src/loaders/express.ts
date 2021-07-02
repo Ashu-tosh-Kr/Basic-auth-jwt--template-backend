@@ -4,6 +4,8 @@ import express from 'express';
 import helmet from 'helmet';
 import config from '../config';
 import routes from '../api';
+import cookieParser from 'cookie-parser'
+
 
 export default ({ app }: { app: express.Application }): void => {
   /**
@@ -34,6 +36,9 @@ export default ({ app }: { app: express.Application }): void => {
 
   // Middleware that transforms the raw string of req.body into json
   app.use(bodyParser.json());
+
+  //custom
+  app.use(cookieParser())
 
   // Load API routes
   app.use(config.api.prefix, routes());
